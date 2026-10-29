@@ -1,0 +1,75 @@
+{
+  "track_id": 70959,
+  "duration_s": 13.2004123,
+  "rows": 100,
+  "processed_decisions_in_span": 100,
+  "first": {
+    "at_ns": 506413103344500,
+    "track": {
+      "id": 70959,
+      "position": [
+        94.607,
+        -3.221
+      ],
+      "velocity": [
+        0.0,
+        0.0
+      ],
+      "hits": 1,
+      "misses": 0,
+      "points": 7,
+      "residual_m": 0,
+      "bounds_m": {
+        "lo": [
+          94.174,
+          -3.608,
+          0.047
+        ],
+        "hi": [
+          94.997,
+          -3.192,
+          0.895
+        ]
+      },
+      "association_ambiguous": false
+    },
+    "status": "eligible_experimental",
+    "alerts": []
+  },
+  "last": {
+    "at_ns": 506426303756800,
+    "track": {
+      "id": 70959,
+      "position": [
+        0.584,
+        -2.769
+      ],
+      "velocity": [
+        8.767,
+        0.046
+      ],
+      "hits": 91,
+      "misses": 2,
+      "points": 923,
+      "residual_m": 0.034,
+      "bounds_m": {
+        "lo": [
+          2.33,
+          -3.12,
+          1.042
+        ],
+        "hi": [
+          3.481,
+          -2.545,
+          1.592
+        ]
+      },
+      "association_ambiguous": false
+    },
+    "status": "eligible_experimental",
+    "alerts": []
+  },
+  "max_misses": 2,
+  "ambiguous_rows": 0,
+  "frames_with_any_alert": 0
+}

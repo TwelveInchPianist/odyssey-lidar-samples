@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "case": "01-cyclist",
+      "complete_raw_scans": 46,
+      "decoded_npz_matches": 46
+    },
+    {
+      "case": "02-night-animal",
+      "complete_raw_scans": 12,
+      "decoded_npz_matches": 12
+    },
+    {
+      "case": "03-false-animal",
+      "complete_raw_scans": 5,
+      "decoded_npz_matches": 0
+    },
+    {
+      "case": "04-generic-notices",
+      "complete_raw_scans": 12,
+      "decoded_npz_matches": 0
+    }
+  ],
+  "archive_crc": "all passed during build",
+  "original_camera_sha256": "matches frozen source plan",
+  "scope": "File integrity and correspondence checks, not detector performance validation"
+}

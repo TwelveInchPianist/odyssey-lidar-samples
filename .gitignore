@@ -1,0 +1,5 @@
+*.zip
+*.hevc
+*.pcap
+*.mp4
+__pycache__/

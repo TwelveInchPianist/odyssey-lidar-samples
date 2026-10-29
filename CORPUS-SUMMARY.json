@@ -1,0 +1,140 @@
+{
+  "complete": true,
+  "segments": 313,
+  "routes": 13,
+  "inference_images": 73476,
+  "decoded_camera_frames": {
+    "narrow": 367313,
+    "wide": 367313
+  },
+  "approx_route_minutes_at_nominal_20fps": 306.0941666666667,
+  "virtual_advisories": 90,
+  "advisory_labels": {
+    "person": 66,
+    "bicycle": 15,
+    "animal": 1,
+    "cyclist": 8
+  },
+  "advisory_phrases": {
+    "PERSON RIGHT": 46,
+    "BICYCLE LEFT": 4,
+    "PERSON LEFT": 8,
+    "BICYCLE AHEAD": 2,
+    "PERSON AHEAD": 9,
+    "ANIMAL LEFT": 1,
+    "CYCLIST RIGHT": 8,
+    "BICYCLE RIGHT": 9,
+    "PEOPLE RIGHT": 2,
+    "PEOPLE AHEAD": 1
+  },
+  "saved_review_images": 9483,
+  "elapsed_minutes": 179.72702704668046,
+  "neural_inference_minutes": 92.6328774971315,
+  "by_route": {
+    "00000059--5fc297ee41": {
+      "segments": 16,
+      "images": 3658,
+      "proposals": 0,
+      "labels": {}
+    },
+    "0000005a--c8e9129831": {
+      "segments": 9,
+      "images": 2084,
+      "proposals": 0,
+      "labels": {}
+    },
+    "0000005b--db0d03ba60": {
+      "segments": 14,
+      "images": 3222,
+      "proposals": 0,
+      "labels": {}
+    },
+    "00000054--a20a932e8d": {
+      "segments": 36,
+      "images": 8478,
+      "proposals": 11,
+      "labels": {
+        "person": 8,
+        "bicycle": 3
+      }
+    },
+    "00000055--bd73c07aa3": {
+      "segments": 45,
+      "images": 10790,
+      "proposals": 6,
+      "labels": {
+        "person": 6
+      }
+    },
+    "00000056--267f1cded9": {
+      "segments": 13,
+      "images": 3026,
+      "proposals": 3,
+      "labels": {
+        "person": 3
+      }
+    },
+    "00000057--090bcfdb42": {
+      "segments": 26,
+      "images": 6032,
+      "proposals": 1,
+      "labels": {
+        "person": 1
+      }
+    },
+    "00000058--7e1f2b0b5e": {
+      "segments": 25,
+      "images": 5852,
+      "proposals": 5,
+      "labels": {
+        "person": 2,
+        "bicycle": 3
+      }
+    },
+    "0000005c--61d94886fc": {
+      "segments": 23,
+      "images": 5282,
+      "proposals": 12,
+      "labels": {
+        "person": 12
+      }
+    },
+    "0000005d--ae6b3b1b80": {
+      "segments": 24,
+      "images": 5722,
+      "proposals": 22,
+      "labels": {
+        "animal": 1,
+        "cyclist": 8,
+        "person": 5,
+        "bicycle": 8
+      }
+    },
+    "0000005e--19ade63e21": {
+      "segments": 14,
+      "images": 3328,
+      "proposals": 8,
+      "labels": {
+        "person": 8
+      }
+    },
+    "0000005f--7ed15e4387": {
+      "segments": 21,
+      "images": 4826,
+      "proposals": 9,
+      "labels": {
+        "person": 9
+      }
+    },
+    "00000060--b12d271bbf": {
+      "segments": 47,
+      "images": 11176,
+      "proposals": 13,
+      "labels": {
+        "person": 12,
+        "bicycle": 1
+      }
+    }
+  },
+  "limits": "2 Hz per camera candidate search, not complete perception replay, not manual encounter truth or nuisance/recall estimate. Delivery is simulated, no live sound."
+}

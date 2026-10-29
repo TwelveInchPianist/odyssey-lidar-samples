@@ -1,0 +1,113 @@
+{
+  "route_segment": "0000005d--ae6b3b1b80--2",
+  "frame_id": 2443,
+  "ordinal": 40,
+  "source_ns": 178049486585622,
+  "decoded_bgr_sha256": "eb7dc7035ccf549a11a2604e81f8261e093ab5ba453a1f5489c1a6f192da6bd5",
+  "same_native_pixels": true,
+  "pixel_conversion": "pyav-bgr-bilinear-accurate-bitexact-v1",
+  "raw_boxes": [
+    {
+      "class_id": 16,
+      "class_name": "dog",
+      "score": 0.799371063709259,
+      "xyxy": [
+        83.7791805267334,
+        4.7815898895263675,
+        583.6775749206544,
+        597.1103572845459
+      ]
+    },
+    {
+      "class_id": 2,
+      "class_name": "car",
+      "score": 0.7940283417701721,
+      "xyxy": [
+        711.7581016540528,
+        572.1864889144898,
+        858.3497642517091,
+        627.7300092697144
+      ]
+    },
+    {
+      "class_id": 2,
+      "class_name": "car",
+      "score": 0.7583698034286499,
+      "xyxy": [
+        911.1469341278076,
+        586.6334894180299,
+        948.7434268951416,
+        606.2136362075806
+      ]
+    },
+    {
+      "class_id": 2,
+      "class_name": "car",
+      "score": 0.6596989631652832,
+      "xyxy": [
+        1062.2699417114259,
+        594.0768043518067,
+        1143.6006385803223,
+        629.7483787536621
+      ]
+    },
+    {
+      "class_id": 2,
+      "class_name": "car",
+      "score": 0.5939876437187195,
+      "xyxy": [
+        1020.0370231628418,
+        591.2499195098877,
+        1065.4837776184083,
+        615.7443172454834
+      ]
+    },
+    {
+      "class_id": 2,
+      "class_name": "car",
+      "score": 0.40691348910331726,
+      "xyxy": [
+        894.075212097168,
+        581.5725114822388,
+        916.5417251586914,
+        595.5295026779175
+      ]
+    },
+    {
+      "class_id": 2,
+      "class_name": "car",
+      "score": 0.3890647292137146,
+      "xyxy": [
+        530.984750366211,
+        558.5176654815674,
+        572.1900283813477,
+        585.0214691162109
+      ]
+    },
+    {
+      "class_id": 2,
+      "class_name": "car",
+      "score": 0.2825649082660675,
+      "xyxy": [
+        503.1160915374756,
+        554.2391855239869,
+        545.3160976409912,
+        585.0004621505738
+      ]
+    },
+    {
+      "class_id": 2,
+      "class_name": "car",
+      "score": 0.2560575008392334,
+      "xyxy": [
+        842.8211578369142,
+        578.7157939910888,
+        873.8743255615235,
+        595.5649433135986
+      ]
+    }
+  ],
+  "judgment": "False-object animal advisory: the dog box covers palm foliage at the left, not an animal. Original same-frame pixels verified.",
+  "label_provenance": "Assistant visual review of original frame and adjacent frame; no biological animal supported inside proposed box.",
+  "initial_review_decode": "Default conversion differed; regenerated with frozen native_bgr conversion and obtained exact input hash match."
+}
