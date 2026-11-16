@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#18212c">
+<meta name="fcw-presentation" content="driver-dark-2"><title>Odyssey FCW — Driver display [__INSTANCE__]</title>
+<style>
+:root{color-scheme:dark;--bg:#18212c;--panel:#222e3b;--panel-raised:#2b3949;--fg:#edf3fa;--dim:#bac8d7;--line:#52647a;--green:#72e3ae;--amber:#ffd077;--red:#ff9a9a;--blue:#9cc9ff}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg)}
+body{color:var(--fg);font:clamp(18px,1.35vw,28px)/1.35 system-ui,Segoe UI,sans-serif;min-height:100dvh;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(320px,1fr);grid-template-rows:auto minmax(190px,1fr) auto auto;gap:clamp(12px,1.4vw,28px);padding:clamp(14px,1.6vw,32px);user-select:none}
+header{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:16px}header h1{font-size:clamp(18px,1.45vw,30px);margin:0;letter-spacing:.08em;font-weight:750;color:var(--fg)}.header-actions{display:flex;align-items:center;gap:12px}header a,header button{color:var(--dim);text-decoration:none;font-size:clamp(16px,1.2vw,24px);padding:12px 18px;min-height:48px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+#status{grid-column:1;grid-row:2/4;display:flex;flex-direction:column;justify-content:center;align-items:center;min-width:0;min-height:280px;border-radius:24px;padding:clamp(22px,3vw,68px);text-align:center;background:var(--panel);border:3px solid var(--line)}
+#status .big{font-size:clamp(44px,5.3vw,112px);font-weight:800;letter-spacing:-.025em;line-height:1.08;overflow-wrap:anywhere}#status .why{font-size:clamp(21px,1.9vw,38px);margin-top:22px;color:var(--dim);min-height:1.3em;max-width:35ch}
+#status.green{background:#183d34;border-color:var(--green);color:var(--green)}#status.amber{background:#3a3020;border-color:var(--amber);color:var(--amber)}#status.red{background:#44272d;border-color:var(--red);color:var(--red)}#status.grey{color:var(--fg)}
+.ticks{grid-column:2;grid-row:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tick{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px 8px;min-height:100px;text-align:center;font-size:clamp(19px,1.7vw,34px);font-weight:650;color:var(--dim)}.tick .mark{font-size:clamp(32px,3vw,58px);display:block;line-height:1.2;margin-bottom:7px}.tick.ok .mark{color:var(--green)}.tick.bad .mark{color:var(--red)}.tick.idle .mark{color:var(--dim)}
+#last{grid-column:2;grid-row:3;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;text-align:center;display:none}.label{font-size:clamp(14px,1vw,21px);font-weight:650;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin-bottom:10px}#last .phrase{font-size:clamp(26px,2vw,42px);font-weight:800;color:var(--amber)}#last .meta{color:var(--dim);font-size:clamp(17px,1.2vw,26px);margin:7px 0 16px}.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+button{font:inherit;border:1px solid var(--line);border-radius:14px;background:var(--panel-raised);color:var(--fg);cursor:pointer;padding:16px 20px;font-weight:700;min-height:56px;touch-action:manipulation}button:active{filter:brightness(1.17)}button:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:4px}button:disabled{opacity:.55;cursor:default}.main,.small{font-size:clamp(18px,1.4vw,28px);padding:16px 20px}.small{color:var(--fg)}#start,#stop{width:100%!important;align-self:stretch!important;min-height:64px}#start{border-color:var(--blue);background:#263e5b;color:#dbeaff}#stop{color:var(--fg)}
+#fix{background:#532f35;border:2px solid var(--red);color:var(--red);font-size:clamp(20px,1.6vw,32px);margin-top:24px;display:none}#note{grid-column:1/-1;color:var(--dim);font-size:18px;text-align:center;min-height:1.2em}.spacer{display:none}.drive-actions{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(200px,1fr) auto;align-items:stretch;gap:14px}.wifi-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px;display:flex;align-items:center;gap:16px}.wifi-card button{background:#263e5b;border-color:var(--blue);color:#dbeaff;min-width:210px}.wifi-copy{font-size:clamp(16px,1.1vw,23px);color:var(--dim);overflow-wrap:anywhere}#wifiStatus[data-state=connected]{color:var(--green)}#wifiStatus[data-state=error]{color:var(--red)}#quit{color:var(--dim)}
+#ask{position:fixed;z-index:10;inset:0;background:rgba(15,22,31,.97);display:none;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:32px;text-align:center}#ask p{font-size:clamp(26px,2.4vw,44px);color:var(--fg);max-width:850px}#ask button{font-size:26px;padding:20px 36px;min-height:72px}
+@media(max-width:850px){body{grid-template-columns:1fr;grid-template-rows:auto minmax(260px,1fr) auto auto auto;gap:14px;padding:14px}#status{grid-column:1;grid-row:2;min-height:260px}.ticks{grid-column:1;grid-row:3;grid-template-columns:repeat(4,minmax(0,1fr))}.tick{font-size:16px;min-height:92px;padding:12px 4px}.tick .mark{font-size:30px}#last{grid-column:1;grid-row:4}.drive-actions{grid-template-columns:1fr 1fr}.wifi-card{grid-column:1/-1}.wifi-card button{min-width:180px}.header-actions{gap:8px}header a,header button{font-size:15px;padding:10px 12px}#status .big{font-size:clamp(40px,8vw,70px)}#status .why{font-size:22px}}
+@media(max-height:650px) and (min-width:851px){body{padding:12px;gap:10px;grid-template-rows:auto minmax(160px,1fr) auto auto}#status{min-height:220px;padding:20px}#status .big{font-size:clamp(42px,4.5vw,72px)}#status .why{font-size:21px;margin-top:12px}.tick{min-height:74px;padding:8px}.tick .mark{font-size:28px;margin:0}#last{padding:10px}#last .phrase{font-size:25px}.label{margin-bottom:4px}.drive-actions{gap:10px}.wifi-card{padding:8px 12px}button,#start,#stop{min-height:50px;padding:10px 14px}}
+</style><style>
+#sleepTablet{position:relative;display:block;width:min(100%,380px);min-width:250px;height:80px;margin:12px 0;padding:0 12px 0 74px;border:2px solid #839ab3;border-radius:42px;background:#263748;color:#eef5ff;font-size:22px;touch-action:none;user-select:none;overflow:hidden;text-align:center}
+#sleepTablet .sleep-thumb{position:absolute;left:6px;top:6px;width:64px;height:64px;border-radius:50%;background:#a8d2ff;color:#142536;display:grid;place-items:center;font-size:34px;transform:translateX(var(--slide-x,0px));pointer-events:none}
+#sleepTablet .sleep-label{pointer-events:none}#sleepTablet:focus-visible{outline:3px solid #a8d2ff;outline-offset:4px}#sleepTablet:disabled{opacity:.55}
+</style></head>
+<body>
+<header><h1>ODYSSEY FCW</h1><div class="header-actions"><button id="fullScreen" type="button">Full screen</button><a href="/advanced">Advanced ›</a></div></header>
+
+<div id="status" class="grey"><div class="big" id="big">Connecting…</div><div class="why" id="why"></div>
+  <button id="fix">Turn warnings back on</button></div>
+
+<div class="ticks">
+  <div class="tick idle" id="tLidar"><span class="mark">–</span>Lidar</div>
+  <div class="tick idle" id="tComma"><span class="mark">–</span>Comma</div>
+  <div class="tick idle" id="tSpeech"><span class="mark">–</span>Speech</div>
+  <div class="tick idle" id="tRec"><span class="mark">–</span>Recording</div>
+</div>
+
+<div id="last"><div class="label">Last spoken warning</div><div class="phrase" id="lastPhrase"></div><div class="meta" id="lastMeta"></div>
+  <div class="row"><button class="small" data-label="useful_warning">👍 Good warning</button><button class="small" data-label="false_warning">👎 False alarm</button></div></div>
+
+<section style="margin:12px 0;padding:12px;border:1px solid #62748b;border-radius:12px"><strong>Experimental nighttime awareness — may be noisy</strong><div class="row"><button id="nightOff" type="button">Awareness off</button><button id="nightAuto" type="button">Auto at night</button><button id="nightOn" type="button">Awareness on</button></div><div id="nightStatus">Geometric FCW stays active. Auto uses fresh GPS and approximate sunset; On overrides lighting.</div></section>
+<div class="spacer"></div>
+<div id="note"></div>
+<div class="drive-actions"><div class="wifi-card"><button id="connectWifi" type="button">Connect comma Wi-Fi</button><div class="wifi-copy" id="wifiStatus" role="status" aria-live="polite">Connect the tablet to the comma hotspot.</div></div><div><button class="main" id="start">Start drive</button>
+<button class="main" id="stop" style="display:none">Stop drive</button></div><button id="quit" type="button">Quit app</button></div>
+
+<button id="sleepTablet" type="button" role="slider" aria-label="Slide right to sleep tablet" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="sleep-thumb" aria-hidden="true">›</span><span class="sleep-label">Slide to sleep</span></button>
+<div id="ask"><p id="askText"></p><div class="row"><button id="askNo">Cancel</button><button id="askYes">Yes</button></div></div>
+<script>
+const $=id=>document.getElementById(id),token='__TOKEN__';
+function ask(msg){return new Promise(res=>{$('askText').textContent=msg;$('ask').style.display='flex';$('askYes').onclick=()=>{$('ask').style.display='none';res(true)};$('askNo').onclick=()=>{$('ask').style.display='none';res(false)}})}let lastKey=null,lastAt=0,busy=false;
+async function act(route,body={}){try{const r=await fetch(route,{method:'POST',headers:{'Content-Type':'application/json','X-FCW-Token':token},body:JSON.stringify(body),signal:AbortSignal.timeout(8000)});const d=await r.json();if(!r.ok)throw Error(d.error||r.status);return d}catch(e){$('note').textContent=e.message;return null}}
+// c099 v30d review: the frame thread takes scans but none has a usable point (covered/iced window: every return under 0.2 m). v30d showed Lidar OK + 'waiting for processed frames' (reviewer harness scenario D).
+function noPoints(s){const a=s.lidar_scan_age_s,u=s.lidar_usable_scan_age_s;return a!=null&&a<=1&&(u==null||u>1)}
+// c099 v30d review: comma_status stays 'connected; …' until ssh itself exits (6-9 s after the Wi-Fi drops, indefinitely for a stalled stream), so the comma tick and line also need fresh carState
+function carAge(s){const c=(s.comma_services||{}).carState;return c&&c.age_s!=null?c.age_s:null}
+// plain-English reason for "not ready"
+function plain(reasons,d,s){const r=(reasons||[]).join(' | ').toLowerCase();
+  if(!s)return'';
+  // c099 v30d: blame the cable only when raw packets stopped too (2026-10-21 forensics §3: v30's dead processing thread read as a lidar-cable fault and the cable was re-plugged)
+  if(s.frame_age_s===null||s.frame_age_s>.5||r.includes('no fresh processed lidar')){const raw=s.lidar_packet_age_s;return raw==null||raw>.5?'No lidar data — check the lidar cable and power':noPoints(s)?'Lidar sends no usable points — check the lidar window/cover':'Lidar data arriving — waiting for processed frames (see Advanced)'}
+  if(r.includes('audio output failed'))return'Speaker problem — check the tablet volume / speaker';
+  // c099 v30d: name a missing comma link before the motion reasons. Without comma data the reasons contain 'healthy vehicle motion', so v30 said 'Drive forward above about 7 mph' through all of 2026-10-21 122812 (4.4 min, up to 38 mph, no warnings possible).
+  const cs=String(s.comma_status||'');
+  if(cs==='connecting')return'Linking to the comma…';
+  if(cs&&!cs.startsWith('connected'))return cs.startsWith('reconnecting')?'Comma not linked — '+cs.split(':')[0]+'. Is the tablet on the comma Wi-Fi?':'Comma: '+cs;
+  // c099 v30d review: link still 'connected' but its data stopped or never became usable (reviewer harness scenario A: 151-158 s after a mid-drive drop the page said 'Drive forward above about 7 mph' with Comma OK)
+  if(r.includes('speed/vehicle state missing or stale')||r.includes('comma clock not bounded')){const age=carAge(s);return age!=null&&age>1?'Comma data stopped — reconnecting…':'Waiting for comma data'}
+  if(r.includes('speed floor')||r.includes('forward driving gear')||r.includes('healthy vehicle motion')||(s&&s.stats&&false))return'Drive forward above about 7 mph';
+  if(r.includes('ground')||r.includes('road observation'))return'Reading the road…';
+  if(r.includes('comma')||r.includes('time alignment')||r.includes('telemetry'))return'Waiting for comma data';
+  if(r.includes('path')||r.includes('model'))return'Waiting for a reliable path';
+  return reasons&&reasons.length?reasons[0]:'';}
+function tick(id,state){const e=$(id);e.className='tick '+state;e.querySelector('.mark').textContent=state==='ok'?'✓':state==='bad'?'✗':'–'}
+function show(cls,big,why,fix){const st=$('status');st.className=cls;$('big').textContent=big;$('why').textContent=why||'';$('fix').style.display=fix?'inline-block':'none'}
+let quitting=false;
+async function poll(){if(quitting)return;let d;try{const r=await fetch('/state',{signal:AbortSignal.timeout(4000)});d=await r.json()}catch(e){if(quitting)return;show('red','App not responding','Restart OdysseyFCW on the tablet',false);setTimeout(poll,1500);return}
+  if(quitting)return;updateWifi(d.wifi);$('nightStatus').textContent='Awareness: '+(d.night_awareness_mode||'off')+' · Camera: '+(d.night_awareness_status?.camera_worker?.state||'not started')+' · Experimental, may be noisy · Geometric FCW remains active';
+  if(d.standby){$('note').textContent=d.standby.state;if(!d.standby.pending&&!sleepRequestInFlight){sleepPending=false;$('sleepTablet').disabled=false}};const s=d.session,running=d.running,forced=d.forced_mode;
+  // c099 v30d: the Lidar tick follows the sensor (raw packets), not the engine (forensics §3); c099 v30d review: not when its scans have no usable point,
+  // and the Comma tick needs carState fresh within 1 s as well as a 'connected' status
+  const lidarOk=!!(s&&((s.frame_age_s!==null&&s.frame_age_s<=.5)||(s.lidar_packet_age_s!=null&&s.lidar_packet_age_s<=.5&&!noPoints(s)))), commaOk=!!(s&&String(s.comma_status||'').startsWith('connected')&&carAge(s)!=null&&carAge(s)<=1);
+  const speechOn=!!(s?s.audio_enabled&&!s.audio_fault:(d.config&&d.config.audio_enabled));
+  tick('tLidar',running?(lidarOk?'ok':'bad'):'idle');tick('tComma',running?(commaOk?'ok':'bad'):'idle');
+  tick('tSpeech',speechOn?'ok':'bad');tick('tRec',running&&s&&s.mode!=='demo'?'ok':running?'bad':'idle');
+  $('start').style.display=running?'none':'block';$('stop').style.display=running?'block':'none';
+  const autoRec=d.auto&&d.auto.record;['start','stop'].forEach(id=>{$(id).className=autoRec?'small':'main';$(id).style.width=autoRec?'auto':'100%';$(id).style.alignSelf=autoRec?'center':''});$('start').textContent=autoRec?'Start manually':'Start drive';$('stop').textContent=autoRec?'Stop recording':'Stop drive';
+  $('start').disabled=$('stop').disabled=busy||d.starting||d.busy;
+  $('quit').disabled=quitting||busy||d.starting;
+  if(running&&s&&s.mode==='demo'){show('amber','SIMULATION','This is a demo, not a real drive — press Stop drive',false)}
+  else if(!forced){show('red','WARNINGS OFF','Forced warnings are switched off',true)}
+  else if(!running){const auto=d.auto&&d.auto.record;show('grey',d.starting?'Starting…':d.busy?'Saving last drive…':auto?'Waiting for the car':'Ready to drive',d.busy?'This finishes by itself':auto?'Recording starts by itself when the lidar powers up':'Press Start drive before you set off',false)}
+  else{const st=s.state||{},cov=(st.warning_coverage||{}).state,ok=st.status==='eligible_experimental'&&cov!=='unavailable';
+    // c099 v30d: forensics 2026-10-21 §3 - v30's crash read as a lidar-cable fault and the cable was re-plugged. c099 v30d review: name an action a driver can take
+    // (was 'restart the app'); while autodrive's bounded engine restart is pending, say so (d.auto.state 'engine error: restarting…' / 'automatic restart N of 3 in …')
+    if(s.engine_failure)show('red','ENGINE ERROR',/^engine error: (restarting|automatic restart)/.test(String((d.auto||{}).state||''))?'Engine error — restarting by itself…':'Engine error — press '+(autoRec?'Stop recording, then Start manually':'Stop drive, then Start drive')+' (see Advanced)',false);
+    else if(!speechOn)show('red','WARNINGS MUTED','Speech is off — warnings will be silent',true);
+    else if(ok&&cov==='limited')show('amber','WARNINGS ON — LIMITED',(st.warning_coverage||{}).message||'Reduced range',false);
+    else if(ok)show('green','WARNINGS ON','',false);
+    else show('amber','NOT READY',plain(st.reasons,d,s)||'Waiting for sensors…',false)}
+  // last spoken warning
+  const la=s&&s.last_audio;if(la&&la.phrase){const key=la.phrase+'|'+la.track_id+'|'+la.range_m;if(key!==lastKey){lastKey=key;lastAt=Date.now()}
+    $('last').style.display='block';$('lastPhrase').textContent=la.phrase;
+    const ago=Math.round((Date.now()-lastAt)/1000);$('lastMeta').textContent=(la.range_m?Math.round(la.range_m)+' m ahead · ':'')+(ago<5?'just now':ago+' s ago')}
+  else $('last').style.display='none';
+  const errs=s&&s.errors&&s.errors.length;$('note').textContent=errs?(errs+' issue(s) logged — see Advanced'):(d.background_analysis&&!d.background_analysis.enabled?(d.background_analysis.mode==='calibration_only'?'Bounded calibration on tablet · heavy analysis on the Macs':'Recording and warnings only · heavy analysis on the Macs'):'');
+  setTimeout(poll,500)}
+$('start').onclick=async()=>{busy=true;await act('/start',{mode:'live'});busy=false};
+$('stop').onclick=async()=>{if(!await ask('Stop recording this drive?'))return;busy=true;await act('/stop',{});busy=false};
+$('fix').onclick=async()=>{if(!await ask('Turn warnings and speech back on?'))return;const r=await act('/forced-on',{});if(r)$('note').textContent=r.message};
+document.querySelectorAll('#last button').forEach(b=>b.onclick=async()=>{const r=await act('/mark',{label:b.dataset.label});if(r)$('note').textContent='Thanks — saved for review'});
+function updateWifi(w){if(!w)return;$('wifiStatus').textContent=w.message;$('wifiStatus').dataset.state=w.state;$('connectWifi').disabled=!!w.busy;$('connectWifi').textContent=w.busy?'Connecting…':'Connect comma Wi-Fi'}
+for(const [id,mode] of [['nightOff','off'],['nightAuto','auto'],['nightOn','on']])$(id).onclick=async()=>{const r=await act('/night-awareness',{mode});if(r)$('nightStatus').textContent='Awareness: '+mode+' · Experimental, may be noisy · Geometric FCW remains active'};
+$('connectWifi').onclick=async()=>{const r=await act('/connect-comma-wifi',{});if(r)updateWifi(r.wifi)};
+$('fullScreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch(e){$('note').textContent='Full screen unavailable. Use your browser’s full-screen control.'}};
+document.addEventListener('fullscreenchange',()=>{$('fullScreen').textContent=document.fullscreenElement?'Exit full screen':'Full screen'});
+$('quit').onclick=async()=>{if(!await ask('Save any current recording and quit FCW? Warnings will stop.'))return;busy=true;$('quit').disabled=true;try{const s=await (await fetch('/state')).json();if(s.running){const stopped=await act('/stop',{});if(!stopped)return;let done=false;for(let i=0;i<40;i++){await new Promise(r=>setTimeout(r,500));const d=await (await fetch('/state')).json();if(!d.running&&!d.starting){done=true;break}}if(!done){$('note').textContent='Still finishing the recording. Please wait, then try Quit again.';return}}const result=await act('/quit',{});if(result){quitting=true;show('grey','App closed','Open Odyssey FCW to start again.',false);$('connectWifi').disabled=$('start').disabled=$('stop').disabled=true}}finally{busy=false;$('quit').disabled=quitting}};
+poll();
+
+let sleepPending=false,sleepRequestInFlight=false;
+async function requestTabletSleep(){
+ if(sleepPending)return;
+ sleepPending=true;sleepRequestInFlight=true;$('sleepTablet').disabled=true;
+ const tell=t=>{$('note').textContent=t};
+ try{
+  tell('Saving recording before sleep…');
+  const send=async(route,body={})=>{const r=await fetch(route,{method:'POST',headers:{'Content-Type':'application/json','X-FCW-Token':token},body:JSON.stringify(body),signal:AbortSignal.timeout(8000)});const d=await r.json();if(!r.ok)throw Error(d.error||r.status);return d};
+  await send('/stop');
+  let ready=false;
+  for(let i=0;i<120;i++){
+   const r=await fetch('/state',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw Error('Could not verify recording closeout');
+   const d=await r.json();if(!d.running&&!d.starting&&!d.busy){ready=true;break}
+   await new Promise(resolve=>setTimeout(resolve,500));
+  }
+  if(!ready)throw Error('Recording is still saving. Tablet remains awake; try Sleep again later.');
+  await send('/sleep',{confirmed:true});sleepRequestInFlight=false;
+  tell('Standby requested. FCW stays open and re-arms after waking.');
+ }catch(e){tell('Sleep was not confirmed: '+e.message);sleepPending=false;sleepRequestInFlight=false;$('sleepTablet').disabled=false}
+}
+
+
+// A tap cannot activate sleep: start on the left thumb and drag to the end.
+let sleepDrag=null,sleepSlide=0;
+function setSleepSlide(value){sleepSlide=Math.max(0,Math.min(100,value));const el=$('sleepTablet');el.style.setProperty('--slide-x',((el.getBoundingClientRect().width-76)*sleepSlide/100)+'px');el.setAttribute('aria-valuenow',Math.round(sleepSlide));}
+$('sleepTablet').onpointerdown=e=>{const el=$('sleepTablet');if(el.disabled||sleepPending||e.button!==0)return;const r=el.getBoundingClientRect();if(e.clientX-r.left>76)return;e.preventDefault();sleepDrag={id:e.pointerId,start:e.clientX,travel:Math.max(1,r.width-76)};el.setPointerCapture(e.pointerId);setSleepSlide(0)};
+$('sleepTablet').onpointermove=e=>{if(!sleepDrag||sleepDrag.id!==e.pointerId)return;e.preventDefault();setSleepSlide(100*(e.clientX-sleepDrag.start)/sleepDrag.travel)};
+$('sleepTablet').onpointerup=e=>{if(!sleepDrag||sleepDrag.id!==e.pointerId)return;e.preventDefault();const done=sleepSlide>=95;sleepDrag=null;setSleepSlide(0);if(done)requestTabletSleep()};
+$('sleepTablet').onpointercancel=$('sleepTablet').onlostpointercapture=()=>{sleepDrag=null;setSleepSlide(0)};
+$('sleepTablet').onclick=e=>e.preventDefault();
+$('sleepTablet').onkeydown=e=>{if($('sleepTablet').disabled||sleepPending)return;if(!['ArrowRight','ArrowLeft','Home','End','Escape'].includes(e.key))return;e.preventDefault();if(e.key==='Home'||e.key==='Escape')setSleepSlide(0);else if(e.key==='ArrowLeft')setSleepSlide(sleepSlide-10);else if(e.key==='ArrowRight')setSleepSlide(sleepSlide+10);else setSleepSlide(100);if(sleepSlide>=100){setSleepSlide(0);requestTabletSleep()}};
+</script></body></html>
+
+

@@ -1,0 +1,356 @@
+{
+  "as_of": "2026-11-15",
+  "publication_is_not_new_validation": true,
+  "deployed": {
+    "version": "0.9.17-ground-repeat",
+    "bundle_sha256": "1cd4e035606289fdec7e1c60258583e5b2d14269e4deb2ccc6990c317c6bd202",
+    "physical_audio_tested": false,
+    "subsequent_onroad_validation_established": false,
+    "separate_scheduling": "Normal priority for ordinary/watchdog launch paths and existing owned processes"
+  },
+  "latest_drive": {
+    "decision_frames": 32186,
+    "span_s": 3237.6633823,
+    "engine_ms_p50": 46.2255,
+    "engine_ms_p95": 70.66,
+    "engine_ms_max": 835.423,
+    "deadline_exceeded_frames": 42
+  },
+  "latest_camera_scan": {
+    "segments": 58,
+    "sampled_camera_images": 13914,
+    "decoded_native_frames": 139132,
+    "track_hypotheses": 88,
+    "class_confirmed_hypotheses": 0,
+    "virtual_proposals": 0
+  },
+  "road_capture_mode": {
+    "version": "0.9.16-wake-policy",
+    "night_awareness": "off",
+    "geometric_mode": "forced experimental, physical calibration/timing unverified"
+  },
+  "availability": {
+    "method": "Disjoint hierarchy: experimental eligible, non-forward gear, original speed <0.5m/s, explicit speed/turn gate, moving >=0.5m/s without those gates, unknown. Gated rows may simultaneously have technical reasons; no claim that all unavailability was intentional. Durations hold each saved state to next decision, capped at1s.",
+    "frames": {
+      "stationary_or_creeping_under_0.5mps_with_possible_other_reasons": 2524,
+      "non_forward_gear_gate_with_possible_other_reasons": 320,
+      "other_speed_or_turn_operating_envelope_gate_with_possible_other_reasons": 226,
+      "experimental_eligible": 28670,
+      "moving_unavailable_without_explicit_speed_turn_gear_gate": 446
+    },
+    "seconds": {
+      "stationary_or_creeping_under_0.5mps_with_possible_other_reasons": 254.21578909999752,
+      "non_forward_gear_gate_with_possible_other_reasons": 32.003863599999974,
+      "other_speed_or_turn_operating_envelope_gate_with_possible_other_reasons": 22.605981299999986,
+      "experimental_eligible": 2877.576891600085,
+      "moving_unavailable_without_explicit_speed_turn_gear_gate": 51.260856699999955
+    },
+    "reasons": {
+      "stationary_or_creeping_under_0.5mps_with_possible_other_reasons": {
+        "comma clock not bounded within 40 ms": 206,
+        "speed/vehicle state missing or stale": 231,
+        "comma calibration not valid": 206,
+        "calibrated yaw rate missing or implausible": 229,
+        "Forced experiment still requires healthy vehicle motion": 598,
+        "Forced experiment invalid clock_bound_s": 206,
+        "Forced experiment motion too slow or turn too sharp for its provisional path": 2524,
+        "lidar frame stale": 5,
+        "ground estimate settling": 37,
+        "Forced experiment requires a fresh settled road observation": 64,
+        "inference exceeded 150 ms": 4,
+        "scan timing discontinuity": 3,
+        "invalid vehicle speed": 367,
+        "insufficient ground coverage": 27
+      },
+      "non_forward_gear_gate_with_possible_other_reasons": {
+        "vehicle not in a forward driving gear": 320,
+        "Forced experiment motion too slow or turn too sharp for its provisional path": 303,
+        "inference exceeded 150 ms": 1,
+        "invalid vehicle speed": 57,
+        "Forced experiment still requires healthy vehicle motion": 84
+      },
+      "other_speed_or_turn_operating_envelope_gate_with_possible_other_reasons": {
+        "Forced experiment motion too slow or turn too sharp for its provisional path": 226,
+        "ground estimate settling": 7,
+        "Forced experiment requires a fresh settled road observation": 12,
+        "inference exceeded 150 ms": 1,
+        "no reliable road plane": 2,
+        "insufficient ground coverage": 3
+      },
+      "experimental_eligible": {},
+      "moving_unavailable_without_explicit_speed_turn_gear_gate": {
+        "inference exceeded 150 ms": 36,
+        "lidar frame stale": 30,
+        "scan timing discontinuity": 42,
+        "ground estimate settling": 327,
+        "Forced experiment requires a fresh settled road observation": 360,
+        "calibrated yaw rate missing or implausible": 1,
+        "Forced experiment still requires healthy vehicle motion": 1,
+        "incomplete lidar frame": 5,
+        "ground support too narrow": 20,
+        "no reliable road plane": 13
+      }
+    }
+  },
+  "ground_recovery": {
+    "scope": "17 selected raw windows, plus5 older control windows; not full-drive replay.2-second cold-start warmup excluded from deduplicated time comparison. Original quality failures preserved. No simulated current-time deadline or audio.",
+    "processed_fresh_frame_occurrences": 3663,
+    "unique_fresh_frames_after_warmup": 2919,
+    "unique_moving_settling_seconds": {
+      "baseline": 15.4995032,
+      "candidate": 11.8970906
+    },
+    "recovered_ready_seconds": 3.6024126,
+    "new_unavailable_seconds": 0
+  },
+  "tablet_deadline_controls": [
+    {
+      "job": "wall",
+      "frames": 124,
+      "roundtrip_ms_p50": 40.22385,
+      "roundtrip_ms_p95": 94.55861,
+      "deadline_failures": 0,
+      "alerts": [
+        {
+          "phrase": "OBSTACLE LEFT",
+          "range_m": 12.26,
+          "ttc_s": 1.961
+        }
+      ]
+    },
+    {
+      "job": "parked-car",
+      "frames": 113,
+      "roundtrip_ms_p50": 41.321,
+      "roundtrip_ms_p95": 136.23379999999992,
+      "deadline_failures": 4,
+      "alerts": [
+        {
+          "phrase": "OBSTACLE RIGHT",
+          "range_m": 13.5,
+          "ttc_s": 1.828
+        }
+      ]
+    }
+  ],
+  "scheduling_comparison": {
+    "order": "below,normal,normal,below",
+    "frames_per_mode": 1554,
+    "below_deadline_failures": 0,
+    "normal_deadline_failures": 1,
+    "normal_late_frame_ms": 210.6185,
+    "metrics": [
+      {
+        "job": "healthy-road",
+        "below_mean_run_p95_ms": 90.73262,
+        "normal_mean_run_p95_ms": 80.68491249999997,
+        "relative_reduction_percent": 11.073974828457539
+      },
+      {
+        "job": "slow-independent",
+        "below_mean_run_p95_ms": 89.1675525,
+        "normal_mean_run_p95_ms": 78.7442375,
+        "relative_reduction_percent": 11.689582934330291
+      },
+      {
+        "job": "wall",
+        "below_mean_run_p95_ms": 117.391735,
+        "normal_mean_run_p95_ms": 108.47245749999999,
+        "relative_reduction_percent": 7.597875182609753
+      },
+      {
+        "job": "slow-return",
+        "below_mean_run_p95_ms": 96.16413999999999,
+        "normal_mean_run_p95_ms": 83.36944999999999,
+        "relative_reduction_percent": 13.305053214223102
+      },
+      {
+        "job": "parked-car",
+        "below_mean_run_p95_ms": 91.9254,
+        "normal_mean_run_p95_ms": 85.20810999999999,
+        "relative_reduction_percent": 7.307327463356162
+      }
+    ],
+    "causal_limit": "Counterbalanced short replay supports a tail-latency difference, not proof of the on-road stall cause or improved deadline-failure rate."
+  },
+  "rejected_candidates": {
+    "body_count_candidate": {
+      "decision": "rejected",
+      "reason": "Fails exact synthetic partial-body-overlap control despite preserving broad wall/car positives.",
+      "edge_baseline": true,
+      "edge_candidate": false
+    },
+    "near_road_candidate": {
+      "decision": "rejected",
+      "reason": "Reserved ground windows collectively worsen; no robustness claim from development improvements.",
+      "holdout_baseline_settling_frames": 58,
+      "holdout_candidate_settling_frames": 66,
+      "windows": [
+        {
+          "job": "alert-00",
+          "before": 13,
+          "after": 8
+        },
+        {
+          "job": "alert-01",
+          "before": 4,
+          "after": 4
+        },
+        {
+          "job": "alert-02",
+          "before": 4,
+          "after": 4
+        },
+        {
+          "job": "alert-03",
+          "before": 31,
+          "after": 8
+        },
+        {
+          "job": "alert-04",
+          "before": 9,
+          "after": 4
+        },
+        {
+          "job": "alert-05",
+          "before": 9,
+          "after": 4
+        },
+        {
+          "job": "alert-06",
+          "before": 9,
+          "after": 4
+        },
+        {
+          "job": "alert-07",
+          "before": 4,
+          "after": 4
+        },
+        {
+          "job": "alert-08",
+          "before": 4,
+          "after": 4
+        },
+        {
+          "job": "ground-00",
+          "before": 42,
+          "after": 36
+        },
+        {
+          "job": "ground-01",
+          "before": 29,
+          "after": 38
+        },
+        {
+          "job": "ground-02",
+          "before": 17,
+          "after": 12
+        },
+        {
+          "job": "ground-03",
+          "before": 18,
+          "after": 5
+        },
+        {
+          "job": "ground-04",
+          "before": 32,
+          "after": 13
+        },
+        {
+          "job": "ground-05",
+          "before": 6,
+          "after": 14
+        },
+        {
+          "job": "ground-06",
+          "before": 10,
+          "after": 9
+        },
+        {
+          "job": "ground-07",
+          "before": 5,
+          "after": 9
+        }
+      ]
+    }
+  },
+  "older_pointpillars_probe": {
+    "candidate": "Open3D-ML v0.19.0 PointPillars KITTI, three classes; official checkpoint pointpillars_kitti_202012221652utc.pth",
+    "runtime": "WSL Ubuntu 22.04, CPU-only, isolated venv, four Torch threads",
+    "worker_evidence": [
+      {
+        "frame": 50544,
+        "conservative_torso_points": 3,
+        "pedestrian_nominations": 0,
+        "pedestrian_box_contains_torso": 0
+      },
+      {
+        "frame": 50564,
+        "conservative_torso_points": 1,
+        "pedestrian_nominations": 3,
+        "nearest_pedestrian_score": 0.30797645449638367,
+        "nearest_pedestrian_center_bev_distance_m": 0.09191670855302705,
+        "pedestrian_box_contains_torso": 1
+      },
+      {
+        "frame": 50584,
+        "conservative_torso_points": 26,
+        "pedestrian_nominations": 3,
+        "nearest_pedestrian_score": 0.2510620355606079,
+        "nearest_pedestrian_center_bev_distance_m": 0.4359808201823321,
+        "pedestrian_box_contains_torso": 20,
+        "conflicting_cyclist_score": 0.4530506432056427,
+        "cyclist_box_contains_torso": 26
+      }
+    ],
+    "control": {
+      "name": "concrete barrier event-03",
+      "whole_scan_points": 41556,
+      "target_cluster_points": 1238,
+      "pedestrian_nominations": 0,
+      "cyclist_nominations": 0,
+      "limit": "One targeted nonperson object does not certify the whole frame person-free or establish a false-positive rate."
+    },
+    "remaining_failures": [
+      "Far worker has no person nomination.",
+      "Closer worker receives a higher-scoring Cyclist hypothesis than Pedestrian.",
+      "Two additional person nominations occur in each nearer worker scan; ownership is unverified and the middle scan's extra nomination scores higher than the worker-aligned box.",
+      "M1 intensity is not calibrated to Velodyne; provisional mount remains unverified; no motion-deskew or sensor-domain adaptation.",
+      "KITTI car-only vehicle taxonomy cannot validate truck/cone/barrier identity; many Car outputs remain unreviewed.",
+      "No full 3D person ground truth, temporal evaluation, precision/recall, quietness rate, sustained live latency or production integration was established."
+    ]
+  },
+  "sensebike": {
+    "downloaded": false,
+    "inference_run": false,
+    "blocker": "External sharing disabled by provider",
+    "prepared_full_decoded_scans": 9,
+    "exact_model_config_unknown": true
+  },
+  "autoware_example": {
+    "config_commit": "502994b9e56d95d615200ba8d3cfe0a31de37018",
+    "point_cloud_range": [
+      -76.8,
+      -76.8,
+      -4,
+      76.8,
+      76.8,
+      6
+    ],
+    "classes": [
+      "CAR",
+      "TRUCK",
+      "BUS",
+      "BICYCLE",
+      "PEDESTRIAN"
+    ],
+    "not_the_custom_deployed_engine": true
+  },
+  "limits": [
+    "Selected/exposed encounters, not complete independent recall evaluation",
+    "Preference labels are not object labels",
+    "Newest raw replay inputs remain local",
+    "Timing/extrinsics provisional",
+    "No certification or guaranteed uptime"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "purpose": "radar measurement forecast feature/teacher/inference contract",
+  "files": {
+    "radar.py": "ad90b444a8527c141945f0148f1d32444ebbe2f8d59c83792c71c6cb5a5fd49f",
+    "learning/radar_forecast.py": "21df94e157673f9a0b4ce5c8692f5eb30252cc5c455a95e9dcf6a824c28d9603",
+    "learning/model_registry.py": "00a276392320a570528d4ae381a0c82e19484af4757c5034a022c06646c3e8bb",
+    "learning/radar_live.py": "f36cb47dd809faa39d33811b4df5bca5b1b8b436fa2b769adf2975498d0161d5",
+    "learning/datasets.py": "7a33993d3a0fb0dd3d0e8f47f0ebd60ff55f3d804ccd498dc19e84a2a093f0f0",
+    "learning/training.py": "c230030bbfe7bc8971d0f9051d798d2ea686d635db01af11bf2214a853a15b0e"
+  },
+  "runtime_signature": "9ba5d0f9873301b245a02949b0d586f69bdd53412f48d1dd878bc869bc458f5c"
+}

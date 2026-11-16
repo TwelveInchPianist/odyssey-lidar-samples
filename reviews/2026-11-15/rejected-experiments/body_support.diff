@@ -1,0 +1,12 @@
+--- DEPLOYED/corridor_occupancy.py
++++ REJECTED/corridor_occupancy.py
+@@ -105,5 +105,9 @@
+     if body_gap > 0 and out['extent_cross_m'] < CENTRE_SPAN_M:
+         out['edge_only'] = True
+         return out
++    out['body_points'] = int(np.count_nonzero(np.abs(c) <= mount.width_m/2))
++    if out['body_points'] < need:
++        out['body_support_withheld'] = True
++        return out
+     out['in_path'] = True
+     return out

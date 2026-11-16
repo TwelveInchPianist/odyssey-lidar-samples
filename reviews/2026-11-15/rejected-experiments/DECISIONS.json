@@ -1,0 +1,101 @@
+{
+  "body_count_candidate": {
+    "decision": "rejected",
+    "reason": "Fails exact synthetic partial-body-overlap control despite preserving broad wall/car positives.",
+    "edge_baseline": true,
+    "edge_candidate": false
+  },
+  "near_road_candidate": {
+    "decision": "rejected",
+    "reason": "Reserved ground windows collectively worsen; no robustness claim from development improvements.",
+    "holdout_baseline_settling_frames": 58,
+    "holdout_candidate_settling_frames": 66,
+    "windows": [
+      {
+        "job": "alert-00",
+        "before": 13,
+        "after": 8
+      },
+      {
+        "job": "alert-01",
+        "before": 4,
+        "after": 4
+      },
+      {
+        "job": "alert-02",
+        "before": 4,
+        "after": 4
+      },
+      {
+        "job": "alert-03",
+        "before": 31,
+        "after": 8
+      },
+      {
+        "job": "alert-04",
+        "before": 9,
+        "after": 4
+      },
+      {
+        "job": "alert-05",
+        "before": 9,
+        "after": 4
+      },
+      {
+        "job": "alert-06",
+        "before": 9,
+        "after": 4
+      },
+      {
+        "job": "alert-07",
+        "before": 4,
+        "after": 4
+      },
+      {
+        "job": "alert-08",
+        "before": 4,
+        "after": 4
+      },
+      {
+        "job": "ground-00",
+        "before": 42,
+        "after": 36
+      },
+      {
+        "job": "ground-01",
+        "before": 29,
+        "after": 38
+      },
+      {
+        "job": "ground-02",
+        "before": 17,
+        "after": 12
+      },
+      {
+        "job": "ground-03",
+        "before": 18,
+        "after": 5
+      },
+      {
+        "job": "ground-04",
+        "before": 32,
+        "after": 13
+      },
+      {
+        "job": "ground-05",
+        "before": 6,
+        "after": 14
+      },
+      {
+        "job": "ground-06",
+        "before": 10,
+        "after": 9
+      },
+      {
+        "job": "ground-07",
+        "before": 5,
+        "after": 9
+      }
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+--- DEPLOYED/fcw_engine.py
++++ REJECTED/fcw_engine.py
+@@ -179,7 +179,13 @@
+         if len(q)<40:
+             return self._fail('insufficient ground coverage')
+         if len(q)>2500:q=q[::math.ceil(len(q)/2500)]
+-        best=None;best_count=0
++        best=None;best_count=0;best_score=-1.
++        # Diagnostic candidate: equal total consensus weight for observed near
++        # road and the remainder, preventing far/wide cells dominating by count.
++        near=(q[:,0]<15)&(np.abs(q[:,1])<3)
++        weights=np.ones(len(q),float)
++        if near.sum()>=40 and (~near).sum()>=40:
++            weights[near]=.5/near.sum();weights[~near]=.5/(~near).sum()
+         A=np.column_stack((q[:,0],q[:,1],np.ones(len(q))))
+         indices=_ground_samples(len(q))
+         indices=indices[np.abs(np.linalg.det(A[indices]))>=.1]
+@@ -188,13 +194,17 @@
+         for abc in solutions:
+             if np.linalg.norm(abc[:2])>.25 or abs(abc[2])>.65:continue
+             mask=np.abs(A@abc-q[:,2])<.12
+-            if np.count_nonzero(mask)>best_count:best,best_count=mask,np.count_nonzero(mask)
++            count=int(np.count_nonzero(mask))
++            if count<35 or count/len(q)<.4:continue
++            score=float(weights[mask].sum())
++            if score>best_score:best,best_count,best_score=mask,count,score
+         if best is None or best_count<35 or best_count/len(q)<.4:
+             return self._fail('no reliable road plane')
+         inlier=q[best]
+         if np.ptp(inlier[:,0])<8 or np.ptp(inlier[:,1])<3:
+             return self._fail('ground support too narrow')
+-        abc=np.linalg.lstsq(A[best],q[best,2],rcond=None)[0]
++        scale=np.sqrt(weights[best])
++        abc=np.linalg.lstsq(A[best]*scale[:,None],q[best,2]*scale,rcond=None)[0]
+         rms=float(np.sqrt(np.mean((A[best]@abc-q[best,2])**2)))
+         if rms>.1:
+             return self._fail('ground residual too large')
