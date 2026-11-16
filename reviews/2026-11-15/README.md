@@ -13,3 +13,7 @@ This November15,2026 snapshot covers the experimental lidar/camera audible-warni
 - [Rejected experiments](rejected-experiments/DECISIONS.json)
 
 No new test was run merely to publish this snapshot. It is not a safety certification, a complete labeled benchmark or a self-contained installer. Newer raw replay packs remain local; the repository's four older public sample cases remain available separately.
+
+## If the handoff is truncated
+
+Use the [single follow-up text attachment](gemini-followup-context.txt), [short individual sections](sections/README.md), and [factual clarifications for the second review](FOLLOWUP-CLARIFICATIONS.md). The first external review had not accessed sections5–11 or the source; its range/timing claims are not adopted as measured project results.
